@@ -1,0 +1,30 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="AppTheme.Base">
+        <!-- EditText-->
+        <!-- <item name="colorControlNormal">@color/colorPrimary</item>
+        <item name="colorControlActivated">@color/colorPrimary</item>
+        <item name="colorControlHighlight">@color/colorAccent</item> -->
+    </style>
+
+    <style name="AppTheme.Base" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <!-- <item name="android:typeface">serif</item> -->
+        <!-- Buttons-->
+        <!--<item name="colorButtonNormal">@color/colorPrimary</item>-->
+
+        <!-- AlertDialog -->
+        <!--<item name="alertDialogTheme">@style/AppCompatAlertDialogStyle</item>-->
+    </style>
+
+
+    <!--<style name="AppCompatAlertDialogStyle" parent="Theme.AppCompat.Light.Dialog.Alert">-->
+        <!--<item name="colorAccent">@color/colorPrimary</item>-->
+        <!--<item name="android:textColorPrimary">#000</item>-->
+        <!--<item name="android:background">#fff</item>-->
+    <!--</style>-->
+
+</resources>

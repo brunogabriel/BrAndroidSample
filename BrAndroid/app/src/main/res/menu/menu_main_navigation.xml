@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/home"
+            android:title="@string/navigation_home"
+            android:icon="@drawable/ic_home_black_36dp"/>
+
+        <item
+            android:id="@+id/settings"
+            android:title="@string/navigation_settings"
+            android:icon="@drawable/ic_settings_applications_black_36dp"/>
+
+        <item
+            android:id="@+id/logout"
+            android:title="@string/navigation_logout"
+            android:icon="@drawable/ic_exit_to_app_black_36dp"/>
+
+    </group>
+</menu>

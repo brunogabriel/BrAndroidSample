@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:background="@color/colorPrimary"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:scaleType="fitXY"
+        android:id="@+id/background_image"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignBottom="@+id/email_text" />
+
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/profile_image"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_width="72dp"
+        android:layout_height="72dp"
+        app:civ_border_width="2dp"
+        app:civ_border_color="@android:color/white"/>
+
+    <android.support.v7.widget.AppCompatTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Albert Einstein"
+        android:id="@+id/name_text"
+        android:textColor="@android:color/white"
+        android:textStyle="bold"
+        android:layout_below="@+id/profile_image"
+        android:layout_alignLeft="@+id/profile_image"
+        android:singleLine="true"
+        android:textSize="16dp"
+        android:layout_alignStart="@+id/profile_image"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <android.support.v7.widget.AppCompatTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="einstein@server.com"
+        android:id="@+id/email_text"
+        android:textColor="@android:color/white"
+        android:singleLine="true"
+        android:textSize="16dp"
+        android:paddingBottom="16dp"
+        android:layout_below="@+id/name_text"
+        android:layout_alignLeft="@+id/name_text"
+        android:layout_alignStart="@+id/name_text" />
+
+
+
+</RelativeLayout>
