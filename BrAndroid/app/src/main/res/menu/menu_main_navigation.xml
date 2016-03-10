@@ -7,14 +7,55 @@
             android:icon="@drawable/ic_home_black_36dp"/>
 
         <item
-            android:id="@+id/settings"
-            android:title="@string/navigation_settings"
-            android:icon="@drawable/ic_settings_applications_black_36dp"/>
-
-        <item
-            android:id="@+id/logout"
-            android:title="@string/navigation_logout"
-            android:icon="@drawable/ic_exit_to_app_black_36dp"/>
-
+            android:id="@+id/map"
+            android:title="@string/navigation_mapnavigation"
+            android:icon="@drawable/ic_map_black_36dp"/>
     </group>
+
+    <item android:title="@string/navigation_second_menu">
+        <menu>
+            <group android:checkableBehavior="single">
+                <item
+                    android:id="@+id/settings"
+                    android:title="@string/navigation_settings"
+                    android:icon="@drawable/ic_settings_applications_black_36dp"/>
+
+                <item
+                    android:id="@+id/database"
+                    android:title="@string/navigation_database"
+                    android:icon="@drawable/ic_backup_black_36dp"/>
+            </group>
+        </menu>
+    </item>
+
+    <item android:title="@string/navigation_third_menu">
+        <menu>
+            <group android:checkableBehavior="single">
+
+                <item
+                    android:id="@+id/about"
+                    android:title="@string/navigation_about"
+                    android:icon="@drawable/ic_error_black_36dp"/>
+
+                <item
+                    android:id="@+id/information"
+                    android:title="@string/navigation_information"
+                    android:icon="@drawable/ic_new_releases_black_36dp"/>
+
+                <item
+                    android:id="@+id/report"
+                    android:title="@string/navigation_sendemail"
+                    android:icon="@drawable/ic_feedback_black_36dp"/>
+
+
+                <item
+                    android:id="@+id/logout"
+                    android:title="@string/navigation_logout"
+                    android:icon="@drawable/ic_exit_to_app_black_36dp"/>
+            </group>
+        </menu>
+    </item>
+
+
+
 </menu>

@@ -1,9 +1,5 @@
 package br.com.brandroid.activities;
 
-import android.annotation.TargetApi;
-import android.graphics.Bitmap;
-import android.graphics.drawable.BitmapDrawable;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
@@ -11,6 +7,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 
 import com.squareup.picasso.Picasso;
@@ -31,6 +28,7 @@ public class MainActivity extends BaseActivity {
     @Bind(R.id.toolbar) protected Toolbar mToolbar;
     @Bind(R.id.navigation_view) protected NavigationView mNavigationView;
     @Bind(R.id.drawer) protected DrawerLayout mDrawerLayout;
+    @Bind(R.id.fragment_content) protected FrameLayout mFragmentContent;
 
     // Elements
     protected ActionBarDrawerToggle mActionBarDrawerToggle;
@@ -59,27 +57,22 @@ public class MainActivity extends BaseActivity {
         }
     }
 
-    @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
-    private void applyBackgroundOnView(View mView, Bitmap mBitmap) {
-        if(mView!=null && mBitmap!=null) {
-            if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-                mView.setBackground(new BitmapDrawable(getResources(), mBitmap));
-            } else {
-                mView.setBackgroundDrawable(new BitmapDrawable(getResources(), mBitmap));
-            }
-        }
-    }
-
     private void setupNavigationDrawer() {
         mNavigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(MenuItem item) {
                 int mClickedId = item.getItemId();
 
+                if(mClickedId!=7) {
+                    mToolbar.setTitle(item.getTitle());
+                }
+
                 switch (mClickedId) {
                     default:
                         break;
                 }
+
+                mDrawerLayout.closeDrawers();
                 return true;
             }
         });
@@ -101,5 +94,9 @@ public class MainActivity extends BaseActivity {
 
         mDrawerLayout.addDrawerListener(mActionBarDrawerToggle);
         mActionBarDrawerToggle.syncState();
+
+        // Define first element
+        mNavigationView.getMenu().getItem(0).setChecked(true);
+        getSupportActionBar().setTitle(mNavigationView.getMenu().getItem(0).getTitle());
     }
 }
