@@ -19,15 +19,24 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <include android:id="@+id/toolbar" layout="@layout/toolbar_layout"/>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <include android:id="@+id/toolbar" layout="@layout/toolbar_layout"/>
+
+                <FrameLayout
+                    android:background="@android:color/white"
+                    android:layout_below="@+id/toolbar"
+                    android:id="@+id/fragment_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
+
+
+            </RelativeLayout>
+
 
         </android.support.design.widget.AppBarLayout>
-
-        <!-- Include Layout -->
-        <FrameLayout
-            android:id="@+id/fragment_content"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
 
     </android.support.design.widget.CoordinatorLayout>
 

@@ -2,17 +2,19 @@ package br.com.brandroid.activities;
 
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
 
 import com.squareup.picasso.Picasso;
 
 import br.com.brandroid.R;
+import br.com.brandroid.fragments.MapFragment;
 import br.com.brandroid.manager.BaseActivity;
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -28,7 +30,6 @@ public class MainActivity extends BaseActivity {
     @Bind(R.id.toolbar) protected Toolbar mToolbar;
     @Bind(R.id.navigation_view) protected NavigationView mNavigationView;
     @Bind(R.id.drawer) protected DrawerLayout mDrawerLayout;
-    @Bind(R.id.fragment_content) protected FrameLayout mFragmentContent;
 
     // Elements
     protected ActionBarDrawerToggle mActionBarDrawerToggle;
@@ -64,6 +65,8 @@ public class MainActivity extends BaseActivity {
                 int mClickedId = item.getItemId();
 
                 if(mClickedId!=7) {
+                    Fragment mFragment = new MapFragment();
+                    changeContentFragment(mFragment, item.getTitle().toString());
                     mToolbar.setTitle(item.getTitle());
                 }
 
@@ -98,5 +101,14 @@ public class MainActivity extends BaseActivity {
         // Define first element
         mNavigationView.getMenu().getItem(0).setChecked(true);
         getSupportActionBar().setTitle(mNavigationView.getMenu().getItem(0).getTitle());
+    }
+
+    private void changeContentFragment(Fragment mNextFragment, String mNextTitle) {
+        if (mNextFragment!=null) {
+            FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+            fragmentTransaction.replace(R.id.fragment_content, mNextFragment);
+            fragmentTransaction.commit();
+            getSupportActionBar().setTitle(mNextTitle);
+        }
     }
 }
