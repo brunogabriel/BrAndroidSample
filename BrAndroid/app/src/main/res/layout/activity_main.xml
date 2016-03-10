@@ -9,10 +9,16 @@
     android:fitsSystemWindows="true"
     tools:openDrawer="start">
 
+    <RelativeLayout
+        android:background="@android:color/white"
+        android:layout_below="@+id/toolbar"
+        android:id="@+id/fragment_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
     <android.support.design.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:fitsSystemWindows="true"
         tools:context=".activities.MainActivity">
 
         <android.support.design.widget.AppBarLayout
@@ -25,18 +31,20 @@
 
                 <include android:id="@+id/toolbar" layout="@layout/toolbar_layout"/>
 
-                <FrameLayout
-                    android:background="@android:color/white"
-                    android:layout_below="@+id/toolbar"
-                    android:id="@+id/fragment_content"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"/>
-
-
             </RelativeLayout>
 
-
         </android.support.design.widget.AppBarLayout>
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/float_button"
+            app:layout_anchorGravity="bottom|right|end"
+            android:layout_margin="16dp"
+            android:visibility="gone"
+            android:src="@drawable/ic_map_white_36dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:layout_gravity="end|bottom"/>
 
     </android.support.design.widget.CoordinatorLayout>
 
@@ -45,6 +53,7 @@
         android:layout_height="match_parent"
         android:layout_width="match_parent"
         android:layout_gravity="start"
+        android:fitsSystemWindows="true"
         app:headerLayout="@layout/navigation_header"
         app:menu="@menu/menu_main_navigation"/>
 

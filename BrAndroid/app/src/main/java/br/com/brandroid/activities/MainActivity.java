@@ -1,6 +1,7 @@
 package br.com.brandroid.activities;
 
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -14,6 +15,7 @@ import android.widget.ImageView;
 import com.squareup.picasso.Picasso;
 
 import br.com.brandroid.R;
+import br.com.brandroid.fragments.HomeFragment;
 import br.com.brandroid.fragments.MapFragment;
 import br.com.brandroid.manager.BaseActivity;
 import butterknife.Bind;
@@ -30,10 +32,14 @@ public class MainActivity extends BaseActivity {
     @Bind(R.id.toolbar) protected Toolbar mToolbar;
     @Bind(R.id.navigation_view) protected NavigationView mNavigationView;
     @Bind(R.id.drawer) protected DrawerLayout mDrawerLayout;
+    @Bind(R.id.float_button) FloatingActionButton mFloatingActionButton;
 
     // Elements
     protected ActionBarDrawerToggle mActionBarDrawerToggle;
     protected View mHeaderView;
+
+    // List of Fragments
+    private int mLastClicked=-1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,16 +69,26 @@ public class MainActivity extends BaseActivity {
             @Override
             public boolean onNavigationItemSelected(MenuItem item) {
                 int mClickedId = item.getItemId();
-
-                if(mClickedId!=7) {
-                    Fragment mFragment = new MapFragment();
-                    changeContentFragment(mFragment, item.getTitle().toString());
-                    mToolbar.setTitle(item.getTitle());
-                }
-
+                Fragment mNewFragment=null;
                 switch (mClickedId) {
+                    case R.id.home:
+                        if (mLastClicked!=mClickedId) {
+                            mNewFragment = new HomeFragment();
+                        }
+                        break;
+                    case R.id.map:
+                        if (mLastClicked!=mClickedId) {
+                            mNewFragment = new MapFragment();
+                        }
+                        break;
                     default:
                         break;
+                }
+
+                if (mNewFragment!=null) {
+                    mLastClicked = mClickedId;
+                    changeContentFragment(mNewFragment, item.getTitle().toString());
+                    mFloatingActionButton.setVisibility(mLastClicked!=R.id.map?View.GONE: View.VISIBLE);
                 }
 
                 mDrawerLayout.closeDrawers();
