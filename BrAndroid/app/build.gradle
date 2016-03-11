@@ -22,11 +22,15 @@ android {
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     testCompile 'junit:junit:4.12'
+
     compile 'com.android.support:appcompat-v7:23.2.0'
     compile 'com.android.support:design:23.2.0'
     compile 'com.android.support:recyclerview-v7:23.2.0'
-    compile 'com.jakewharton:butterknife:7.0.1'
-    compile 'com.squareup.picasso:picasso:2.5.2'
-    compile 'de.hdodenhof:circleimageview:2.0.0'
-    compile 'org.osmdroid:osmdroid-android:5.1@aar' // OpenStreetMap
+
+    compile 'com.jakewharton:butterknife:7.0.1' // Bind
+    compile 'com.squareup.picasso:picasso:2.5.2' // Load Images
+    compile 'de.hdodenhof:circleimageview:2.0.0' // Circular Images
+    compile 'org.osmdroid:osmdroid-android:5.1@aar' // OpenStreetMaps
+    compile 'com.github.clans:fab:1.6.2'
+
 }

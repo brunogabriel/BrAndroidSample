@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import org.osmdroid.api.IMapController;
+import org.osmdroid.tileprovider.tilesource.OnlineTileSourceBase;
 import org.osmdroid.tileprovider.tilesource.TileSourceFactory;
 import org.osmdroid.util.GeoPoint;
 import org.osmdroid.views.MapController;
@@ -22,7 +23,7 @@ import butterknife.ButterKnife;
  */
 public class MapFragment extends Fragment {
 
-    @Bind(R.id.map) protected MapView map;
+    @Bind(R.id.map) protected MapView mMap;
     protected View mRootView;
 
     protected MapController mMapController;
@@ -35,18 +36,19 @@ public class MapFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         mRootView = inflater.inflate(R.layout.fragment_map, null, false);
         ButterKnife.bind(this, mRootView);
-
-        //MapView map = (MapView) findViewById(R.id.map);
-        map.setTileSource(TileSourceFactory.MAPNIK);
-        //map.setBuiltInZoomControls(true);
-        map.setMultiTouchControls(true);
-
-        IMapController mapController = map.getController();
+        IMapController mapController = mMap.getController();
         mapController.setZoom(4);
         GeoPoint startPoint = new GeoPoint(48.8583, 2.2944);
         mapController.setCenter(startPoint);
 
         return mRootView;
+    }
+
+    public void changeMapStyle(OnlineTileSourceBase base) {
+
+        if(base!=null) {
+            mMap.setTileSource(base);
+        }
     }
 
 }

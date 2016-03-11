@@ -1,7 +1,6 @@
 package br.com.brandroid.activities;
 
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -12,7 +11,12 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 
+import com.github.clans.fab.FloatingActionButton;
+import com.github.clans.fab.FloatingActionMenu;
 import com.squareup.picasso.Picasso;
+
+import org.osmdroid.tileprovider.tilesource.OnlineTileSourceBase;
+import org.osmdroid.tileprovider.tilesource.TileSourceFactory;
 
 import br.com.brandroid.R;
 import br.com.brandroid.fragments.HomeFragment;
@@ -20,6 +24,7 @@ import br.com.brandroid.fragments.MapFragment;
 import br.com.brandroid.manager.BaseActivity;
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class MainActivity extends BaseActivity {
@@ -32,7 +37,10 @@ public class MainActivity extends BaseActivity {
     @Bind(R.id.toolbar) protected Toolbar mToolbar;
     @Bind(R.id.navigation_view) protected NavigationView mNavigationView;
     @Bind(R.id.drawer) protected DrawerLayout mDrawerLayout;
-    @Bind(R.id.float_button) FloatingActionButton mFloatingActionButton;
+
+    // Floating Action Itens
+    @Bind(R.id.actionMenu) protected FloatingActionMenu mFloatingActionMenu;
+
 
     // Elements
     protected ActionBarDrawerToggle mActionBarDrawerToggle;
@@ -40,6 +48,48 @@ public class MainActivity extends BaseActivity {
 
     // List of Fragments
     private int mLastClicked=-1;
+
+    // Current Fragment
+    protected Fragment mCurrentFragment;
+
+    // Onclick
+    @OnClick(R.id.action_button1) protected void onClickAction1() {
+        onChangeMap(TileSourceFactory.MAPNIK);
+    }
+
+    // Onclick
+    @OnClick(R.id.action_button2) protected void onClickAction2() {
+        onChangeMap(TileSourceFactory.MAPQUESTAERIAL);
+    }
+
+    // Onclick
+    @OnClick(R.id.action_button3) protected void onClickAction3() {
+        onChangeMap(TileSourceFactory.MAPQUESTOSM);
+    }
+
+    // Onclick
+    @OnClick(R.id.action_button4) protected void onClickAction4() {
+        onChangeMap(TileSourceFactory.CYCLEMAP);
+    }
+
+
+    // Onclick
+    @OnClick(R.id.action_button5) protected void onClickAction5() {
+        onChangeMap(TileSourceFactory.HIKEBIKEMAP);
+    }
+
+    protected void onChangeMap(OnlineTileSourceBase source) {
+        if(mCurrentFragment!=null && mCurrentFragment instanceof MapFragment && source!=null) {
+            MapFragment mMapFragment = (MapFragment) mCurrentFragment;
+            mMapFragment.changeMapStyle(source);
+        }
+
+        if(mFloatingActionMenu.isOpened()) {
+            mFloatingActionMenu.close(true);
+        }
+
+    }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -86,9 +136,10 @@ public class MainActivity extends BaseActivity {
                 }
 
                 if (mNewFragment!=null) {
+                    mCurrentFragment = mNewFragment;
                     mLastClicked = mClickedId;
                     changeContentFragment(mNewFragment, item.getTitle().toString());
-                    mFloatingActionButton.setVisibility(mLastClicked!=R.id.map?View.GONE: View.VISIBLE);
+                    mFloatingActionMenu.setVisibility(mLastClicked != R.id.map ? View.GONE : View.VISIBLE);
                 }
 
                 mDrawerLayout.closeDrawers();
