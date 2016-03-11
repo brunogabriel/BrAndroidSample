@@ -7,6 +7,7 @@ It's possible to you find some bugs in my code, please, give me a feedback about
 
 ## Features
 At the moment, we've:
+
 1. Binding with Butterknife
 2. Material design with our Toolbar
 3. Toolbar with Window Translucent Status
